@@ -1,0 +1,25 @@
+<h2>Create a new Countdown</h2>
+
+<main>
+  <form>
+    <mat-form-field class="form-input">
+      <mat-label>Title</mat-label>
+      <input matInput required type="text" [formControl]="titleControl">
+    </mat-form-field>
+    <mat-form-field class="form-input">
+      <mat-label>Target Date/Time</mat-label>
+      <input matInput required type="datetime-local" [formControl]="targetDateControl">
+    </mat-form-field>
+    <mat-form-field class="form-input">
+      <mat-label>Background Image URL</mat-label>
+      <input matInput type="text" [formControl]="imgSrcControl">
+      <mat-error>Invalid URL</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="createCountdown($event)">Create</button>
+  </form>
+</main>
+
+<footer>
+  <app-footer></app-footer>
+</footer>

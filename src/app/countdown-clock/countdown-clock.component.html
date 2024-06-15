@@ -1,0 +1,32 @@
+<ng-container *ngIf="finished then countdownFinished; else countdown"></ng-container>
+
+<ng-template #countdownFinished>
+  <p class="countdown-finished">Countdown has finished!</p>
+</ng-template>
+<ng-template #countdown>
+  <h2 class="target-date">{{ targetDate | date: 'long' }}</h2>
+  <ul class="countdown-num-container">
+    @if (daysLeft > 0) {
+      <li>
+        <span>{{daysLeft}}</span>
+        <span>day{{daysLeft !== 1 ? 's' : ''}}</span>
+      </li>
+    }
+    @if (hoursLeft > 0 || daysLeft > 0) {
+      <li>
+        <span>{{hoursLeft}}</span>
+        <span>hour{{daysLeft !== 1 ? 's' : ''}}</span>
+      </li>
+    }
+    @if (minutesLeft > 0 || hoursLeft > 0 || daysLeft > 0) {
+      <li>
+        <span>{{minutesLeft}}</span>
+        <span>minute{{daysLeft !== 1 ? 's' : ''}}</span>
+      </li>
+    }
+    <li>
+      <span>{{secondsLeft}}</span>
+      <span>second{{daysLeft !== 1 ? 's' : ''}}</span>
+    </li>
+  </ul>
+</ng-template>
