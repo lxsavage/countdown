@@ -1,25 +1,38 @@
-<h2>Create a new Countdown</h2>
-
 <main>
-  <form>
-    <mat-form-field class="form-input">
-      <mat-label>Title</mat-label>
-      <input matInput required type="text" [formControl]="titleControl">
-    </mat-form-field>
-    <mat-form-field class="form-input">
-      <mat-label>Target Date/Time</mat-label>
-      <input matInput required type="datetime-local" [formControl]="targetDateControl">
-    </mat-form-field>
-    <mat-form-field class="form-input">
-      <mat-label>Background Image URL</mat-label>
-      <input matInput type="text" [formControl]="imgSrcControl">
-      <mat-error>Invalid URL</mat-error>
-    </mat-form-field>
 
-    <button mat-raised-button color="primary" (click)="createCountdown($event)">Create</button>
-  </form>
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Create a new countdown</mat-card-title>
+    </mat-card-header>
+    <form>
+      <mat-card-content>
+        <mat-form-field class="form-input">
+          <mat-label>Title</mat-label>
+          <input matInput required type="text" [formControl]="titleControl">
+        </mat-form-field>
+        <mat-form-field class="form-input">
+          <mat-label>Target Date/Time</mat-label>
+          <input matInput required type="datetime-local" [formControl]="targetDateControl">
+        </mat-form-field>
+        <mat-form-field class="form-input">
+          <mat-label>Subtitle</mat-label>
+          <input matInput type="text" [formControl]="subtitleControl">
+        </mat-form-field>
+        <mat-form-field class="form-input">
+          <mat-label>Background Image URL</mat-label>
+          <input matInput type="text" [formControl]="imgSrcControl">
+          <mat-error>Invalid URL</mat-error>
+        </mat-form-field>
+        <mat-checkbox [(ngModel)]="hasPreload" name="hasPreload">Has preload date</mat-checkbox>
+        <mat-form-field class="form-input" *ngIf="hasPreload()">
+          <mat-label>Preload Date/Time</mat-label>
+          <input matInput required type="datetime-local" [formControl]="preloadTargetDateControl">
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-button color="primary" (click)="createCountdown($event)">Create</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
 </main>
-
-<footer>
-  <app-footer></app-footer>
-</footer>

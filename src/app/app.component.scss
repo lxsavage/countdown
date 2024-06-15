@@ -1,8 +1,10 @@
-:root {
-  font-size: 10px;
-}
 
 body {
   margin: 0;
   padding: 0;
+}
+html,
+body {
+  min-width: 800px;
+  min-height: 600px;
 }

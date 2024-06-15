@@ -26,7 +26,39 @@
   filter: invert(1);
 }
 
-h1 {
-  font-size: 10rem;
+
+.title-set {
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    font-size: 10rem;
+    line-height: 10rem;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 5rem;
+    line-height: 5rem;
+    text-align: center;
+  }
+}
+
+.countdown-set {
+  display: flex;
+  flex-direction: column;
+
+  .countdown-item {
+    margin-top: 2rem;
+
+    &.darkened {
+      filter: invert(.6);
+    }
+  }
+}
+
+.countdown-type {
+  font-size: 3rem;
+  line-height: 3rem;
   text-align: center;
 }

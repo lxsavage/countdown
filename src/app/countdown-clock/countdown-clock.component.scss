@@ -1,16 +1,15 @@
 .target-date {
   text-align: center;
   font-size: 2rem;
+  line-height: 2rem;
 }
 
 ul.countdown-num-container {
   padding: 0;
-  margin: 0;
   display: flex;
   justify-content: space-between;
 
   li {
-    margin-top: 2rem;
     margin-inline: 1rem;
     text-align: center;
     display: inline-block;
@@ -23,12 +22,13 @@ ul.countdown-num-container {
     // Number
     :first-child {
       font-size: 6rem;
+      line-height: 6rem;
     }
 
     // Unit
     :last-child {
-      margin-top: 3rem;
       font-size: 3rem;
+      line-height: 3rem;
     }
   }
 }

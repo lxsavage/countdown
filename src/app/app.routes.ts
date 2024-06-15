@@ -8,7 +8,7 @@ export const routes: Routes = [
     "component": PCreationWizardComponent
   },
   {
-    "path": "countdown",
+    "path": "countdown/:targetDate",
     "component": PCountdownViewComponent
   }
 ];

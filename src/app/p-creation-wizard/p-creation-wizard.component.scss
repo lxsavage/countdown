@@ -1,15 +1,25 @@
 form {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .form-input {
   width: 100%;
 }
 
-main {
-  display: flex;
+.card {
+  margin: 0 auto;
+  max-width: 500px;
   justify-content: center;
   align-items: center;
   padding: 12px;
+}
+
+main {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }

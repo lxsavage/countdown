@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Component, model } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-import { FooterComponent } from '../footer/footer.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-p-creation-wizard',
@@ -13,32 +14,51 @@ import { FooterComponent } from '../footer/footer.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
+    MatCardModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatCheckboxModule,
     MatInputModule,
-    FooterComponent
   ],
   templateUrl: './p-creation-wizard.component.html',
   styleUrl: './p-creation-wizard.component.scss'
 })
 export class PCreationWizardComponent {
   titleControl = new FormControl('');
+  subtitleControl = new FormControl('');
   targetDateControl = new FormControl(new Date().toISOString());
-  imgSrcControl = new FormControl('', [
-  ]);
+  imgSrcControl = new FormControl('');
+
+  readonly hasPreload = model(false);
+  preloadTargetDateControl = new FormControl('');
 
   constructor(private router: Router) { }
 
   createCountdown(event: Event) {
     event.preventDefault();
+    const queryParams: any = {};
 
-    this.router.navigate(['/countdown'], {
-      queryParams: {
-        title: this.titleControl.value,
-        targetDate: this.convertLocaleStringToISOString(this.targetDateControl.value ?? ''),
-        imgSrc: this.imgSrcControl.value
-      }
-    });
+    if (this.titleControl.value) {
+      queryParams['t'] = this.titleControl.value;
+    }
+
+    if (this.imgSrcControl.value) {
+      queryParams['i'] = this.imgSrcControl.value;
+    }
+
+    if (this.subtitleControl.value) {
+      queryParams['s'] = this.subtitleControl.value;
+    }
+
+    if (this.hasPreload() && this.preloadTargetDateControl.value) {
+      queryParams['p'] = encodeURIComponent(this.convertLocaleStringToISOString(this.preloadTargetDateControl.value));
+    }
+
+    this.router.navigate([
+      '/countdown',
+      encodeURIComponent(this.convertLocaleStringToISOString(this.targetDateControl.value ?? ''))
+    ], { queryParams });
   }
 
   convertLocaleStringToISOString(dateString: string): string {
