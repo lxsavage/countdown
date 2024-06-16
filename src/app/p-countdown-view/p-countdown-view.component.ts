@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CountdownClockComponent } from '../countdown-clock/countdown-clock.component';
 import { Subscription, map } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-p-countdown-view',
@@ -23,29 +24,44 @@ export class PCountdownViewComponent {
   subSink = new Subscription();
   error = '';
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private titleService: Title) {
     this.subSink.add(
       route.params.pipe(map(p => p['targetDate'])).subscribe(targetDate => {
         const decodedDate = decodeURIComponent(targetDate);
         this.targetDate = new Date(decodedDate);
+
+        this.error = '';
         if (this.targetDate.toString() === 'Invalid Date') {
           this.error = 'Invalid Date: ' + decodedDate;
-        } else {
-          this.error = '';
         }
       })
     );
     this.subSink.add(
       route.queryParams.subscribe(params => {
-        this.title = params['t'];
-        this.bgImg = params['i'];
-        this.subtitle = params['s'];
+        this.title = params['t'] ?? '';
+        this.subtitle = params['s'] ?? '';
+        this.bgImg = params['i'] ?? '';
 
-        if (params['p']) {
-          const preload = new Date(decodeURIComponent(params['p']));
-          if (preload.toString() !== 'Invalid Date')
-            this.preloadDate = preload;
+        if (this.title) {
+          let generatedTitle = 'Countdown | ' + decodeURIComponent(this.title);
+          if (this.subtitle) {
+            generatedTitle += ': ' + decodeURIComponent(this.subtitle);
+          }
+          titleService.setTitle(generatedTitle);
+        } else {
+          titleService.setTitle('Countdown | View');
         }
+
+        if (!params['p']) return;
+
+        const preload = new Date(decodeURIComponent(params['p']));
+        if (preload.toString() === 'Invalid Date') return;
+
+        if (preload <= new Date()) {
+          this.preloadPassed = true;
+        }
+
+        this.preloadDate = preload;
       })
     );
   }

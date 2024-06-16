@@ -11,7 +11,7 @@ describe('CountdownClockComponent', () => {
       imports: [CountdownClockComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(CountdownClockComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

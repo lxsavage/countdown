@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-p-creation-wizard',
@@ -18,6 +19,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatCardModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatIconModule,
     MatCheckboxModule,
     MatInputModule,
   ],
@@ -25,6 +27,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   styleUrl: './p-creation-wizard.component.scss'
 })
 export class PCreationWizardComponent {
+  title = 'Creation Wizard';
   titleControl = new FormControl('');
   subtitleControl = new FormControl('');
   targetDateControl = new FormControl(new Date().toISOString());

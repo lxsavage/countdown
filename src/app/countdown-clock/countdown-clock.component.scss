@@ -1,7 +1,5 @@
 .target-date {
   text-align: center;
-  font-size: 2rem;
-  line-height: 2rem;
 }
 
 ul.countdown-num-container {
@@ -10,7 +8,6 @@ ul.countdown-num-container {
   justify-content: space-between;
 
   li {
-    margin-inline: 1rem;
     text-align: center;
     display: inline-block;
     align-items: flex-end;
@@ -18,17 +15,69 @@ ul.countdown-num-container {
     span {
       display: block;
     }
+  }
+}
 
-    // Number
-    :first-child {
-      font-size: 6rem;
-      line-height: 6rem;
+@media (max-width: 439px) {
+  .target-date {
+    font-size: 1.2rem !important;
+    line-height: 1.2rem !important;
+  }
+
+  ul.countdown-num-container {
+    li {
+      margin-inline: .5rem !important;
     }
+  }
 
-    // Unit
-    :last-child {
-      font-size: 3rem;
-      line-height: 3rem;
+}
+
+@media (max-height: 999px), (max-width: 799px) and (min-width: 440px) {
+  .target-date {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+  }
+
+  ul.countdown-num-container {
+    li {
+      margin-inline: 1rem;
+
+      // Number
+      :first-child {
+        font-size: 3rem;
+        line-height: 3rem;
+      }
+
+      // Unit
+      :last-child {
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+      }
+    }
+  }
+}
+
+@media (min-height: 1000px) and (min-width: 800px) {
+  .target-date {
+    font-size: 2rem;
+    line-height: 2rem;
+  }
+
+  ul.countdown-num-container {
+    li {
+      margin-inline: 1rem;
+
+      // Number
+      :first-child {
+        font-size: 6rem;
+        line-height: 6rem;
+      }
+
+      // Unit
+      :last-child {
+        font-size: 3rem;
+        line-height: 3rem;
+      }
     }
   }
 }

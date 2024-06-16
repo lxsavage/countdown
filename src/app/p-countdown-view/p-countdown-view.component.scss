@@ -21,27 +21,44 @@
   height: 100%;
   font-weight: bold;
   align-items: center;
+  overflow-y: scroll;
 
   mix-blend-mode: screen;
   filter: invert(1);
 }
 
+@media only screen and (max-width: 999px) {
+  .title-set {
+    h1 {
+      font-size: 5rem;
+      line-height: 5rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      line-height: 2.5rem;
+    }
+  }
+}
+@media screen and (min-width: 1000px){
+  .title-set {
+    h1 {
+      font-size: 10rem;
+      line-height: 10rem;
+    }
+
+    h2 {
+      font-size: 5rem;
+      line-height: 5rem;
+    }
+  }
+}
 
 .title-set {
   display: flex;
   flex-direction: column;
-
-  h1 {
-    font-size: 10rem;
-    line-height: 10rem;
-    text-align: center;
-  }
-
-  h2 {
-    font-size: 5rem;
-    line-height: 5rem;
-    text-align: center;
-  }
+  max-width: 100vw;
+  text-align: center;
 }
 
 .countdown-set {

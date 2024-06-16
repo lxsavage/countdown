@@ -8,11 +8,12 @@ export const routes: Routes = [
     component: PCountdownViewComponent
   },
   {
-    path: 'create',
+    path: '',
+    title: 'Countdown | Creation Wizard',
     component: PCreationWizardComponent
   },
   {
     path: '**',
-    redirectTo: 'create'
+    redirectTo: ''
   }
 ];

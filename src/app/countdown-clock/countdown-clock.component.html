@@ -1,7 +1,7 @@
 <ng-container *ngIf="finished then countdownFinished; else countdown"></ng-container>
 
 <ng-template #countdownFinished>
-  <p class="countdown-finished">Countdown has finished!</p>
+  <h2 class="target-date">{{ targetDate | date: 'long' }}</h2>
 </ng-template>
 <ng-template #countdown>
   <h2 class="target-date">{{ targetDate | date: 'long' }}</h2>

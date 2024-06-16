@@ -3,6 +3,9 @@
   <mat-card class="card">
     <mat-card-header>
       <mat-card-title>Create a new countdown</mat-card-title>
+          <button mat-icon-button>
+            <mat-icon>more_vert</mat-icon>
+          </button>
     </mat-card-header>
     <form>
       <mat-card-content>
@@ -23,7 +26,7 @@
           <input matInput type="text" [formControl]="imgSrcControl">
           <mat-error>Invalid URL</mat-error>
         </mat-form-field>
-        <mat-checkbox [(ngModel)]="hasPreload" name="hasPreload">Has preload date</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="hasPreload" name="hasPreload">Has preload date</mat-checkbox>
         <mat-form-field class="form-input" *ngIf="hasPreload()">
           <mat-label>Preload Date/Time</mat-label>
           <input matInput required type="datetime-local" [formControl]="preloadTargetDateControl">
@@ -31,7 +34,10 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-button color="primary" (click)="createCountdown($event)">Create</button>
+          <button mat-button color="primary" (click)="createCountdown($event)"
+            [disabled]="titleControl.invalid || !targetDateControl.dirty || (hasPreload() && !preloadTargetDateControl.dirty)">
+            Create
+          </button>
       </mat-card-actions>
     </form>
   </mat-card>

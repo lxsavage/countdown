@@ -14,15 +14,19 @@
       </div>
 
       <div class="countdown-set">
-        @if (preloadDate && !preloadPassed) {
-          <div class="countdown-item">
-            <h3 class="countdown-type">Preload</h3>
+        @if (preloadDate) {
+          <div [className]="'countdown-item' + (preloadPassed ? ' darkened' : '')">
+            <h3 class="countdown-type">
+              Preload
+              {{preloadPassed ? 'Available' : ''}}
+            </h3>
             <app-countdown-clock
             [targetDate]="preloadDate"
+            (completed)="preloadPassed = true"
             ></app-countdown-clock>
           </div>
         }
-        <div [className]="'countdown-item ' + (preloadPassed ? '' : 'darkened')">
+        <div [className]="'countdown-item' + (preloadPassed ? '' : ' darkened')">
           @if (preloadDate) {
             <h3 class="countdown-type">Release</h3>
           }

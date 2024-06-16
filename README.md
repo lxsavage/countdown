@@ -1,5 +1,7 @@
 # Countdown
 
+![Example countdown for Elden Ring: Shadow of the Erdtree](./assets/example1.jpg)
+
 A flexible countdown timer creator utilizing unique URLs to share and save
 timers.
 
