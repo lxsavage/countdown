@@ -4,11 +4,15 @@ import { PCountdownViewComponent } from './p-countdown-view/p-countdown-view.com
 
 export const routes: Routes = [
   {
-    "path": "",
-    "component": PCreationWizardComponent
+    path: ':targetDate',
+    component: PCountdownViewComponent
   },
   {
-    "path": "countdown/:targetDate",
-    "component": PCountdownViewComponent
+    path: 'create',
+    component: PCreationWizardComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'create'
   }
 ];

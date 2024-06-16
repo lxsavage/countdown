@@ -56,7 +56,6 @@ export class PCreationWizardComponent {
     }
 
     this.router.navigate([
-      '/countdown',
       encodeURIComponent(this.convertLocaleStringToISOString(this.targetDateControl.value ?? ''))
     ], { queryParams });
   }
