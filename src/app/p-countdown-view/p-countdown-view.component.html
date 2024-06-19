@@ -1,40 +1,36 @@
 @if (error) {
-  <div class="error">
-    {{ error }}
-  </div>
+<div class="error">
+  {{ error }}
+</div>
 }
 @else {
-  <div class="container" [style.background-image]="'linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.25) 50%, rgba(0,0,0,0) 100%), url(' + bgImg + ')'">
-    <div class="text-container">
-      <div class="title-set">
-        <h1>{{title}}</h1>
-        @if (subtitle) {
-          <h2>{{subtitle}}</h2>
-        }
-      </div>
+<div class="container"
+  [style.background-image]="'linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.25) 50%, rgba(0,0,0,0) 100%), url(' + bgImg + ')'">
+  <div class="text-container">
+    <div class="title-set">
+      <h1>{{title}}</h1>
+      @if (subtitle) {
+      <h2>{{subtitle}}</h2>
+      }
+    </div>
 
-      <div class="countdown-set">
+    <div class="countdown-set">
+      @if (preloadDate && !finalCountdown) {
+      <div [className]="'countdown-item' + (preloadPassed ? ' darkened' : '')">
+        <h3 class="countdown-type">
+          Preload
+          {{preloadPassed ? 'Available' : ''}}
+        </h3>
+        <app-countdown-clock [targetDate]="preloadDate" (completed)="preloadPassed = true"></app-countdown-clock>
+      </div>
+      }
+      <div [className]="'countdown-item' + (preloadPassed ? '' : ' darkened')">
         @if (preloadDate) {
-          <div [className]="'countdown-item' + (preloadPassed ? ' darkened' : '')">
-            <h3 class="countdown-type">
-              Preload
-              {{preloadPassed ? 'Available' : ''}}
-            </h3>
-            <app-countdown-clock
-            [targetDate]="preloadDate"
-            (completed)="preloadPassed = true"
-            ></app-countdown-clock>
-          </div>
+        <h3 class="countdown-type">Release</h3>
         }
-        <div [className]="'countdown-item' + (preloadPassed ? '' : ' darkened')">
-          @if (preloadDate) {
-            <h3 class="countdown-type">Release</h3>
-          }
-          <app-countdown-clock
-          [targetDate]="targetDate"
-          ></app-countdown-clock>
-        </div>
+        <app-countdown-clock [targetDate]="targetDate" [shouldDoFinalCountdown]="true" (finalCountdown)="onFinalCountdownTriggered()"></app-countdown-clock>
       </div>
     </div>
   </div>
+</div>
 }

@@ -2,10 +2,27 @@
   text-align: center;
 }
 
+li.final-countdown-container {
+  width: 100%;
+  margin: 0 auto;
+
+  .final-countdown {
+    font-size: 10rem !important;
+    line-height: 10rem !important;
+  }
+
+  .final-countdown-unit {
+    font-size: 5rem !important;
+    line-height: 5rem !important;
+  }
+}
+
 ul.countdown-num-container {
   padding: 0;
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
 
   li {
     text-align: center;

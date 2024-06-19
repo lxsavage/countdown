@@ -20,6 +20,7 @@ export class PCountdownViewComponent {
   targetDate = new Date();
   preloadDate: Date | undefined;
   preloadPassed = false;
+  finalCountdown = false;
 
   subSink = new Subscription();
   error = '';
@@ -68,5 +69,10 @@ export class PCountdownViewComponent {
 
   ngOnDestroy() {
     this.subSink.unsubscribe();
+  }
+
+  onFinalCountdownTriggered() {
+    if (this.finalCountdown) return;
+    this.finalCountdown = true;
   }
 }

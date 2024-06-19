@@ -11,9 +11,6 @@ export interface Timestamp {
   providedIn: 'root'
 })
 export class CountdownService {
-
-  constructor() { }
-
   getDHMSDisplay(deltaMs: number): Timestamp {
     if (deltaMs < 0) {
       return { days: 0, hours: 0, minutes: 0, seconds: 0 };

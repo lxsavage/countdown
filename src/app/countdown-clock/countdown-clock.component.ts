@@ -16,7 +16,9 @@ import { CountdownService } from '../countdown.service';
 export class CountdownClockComponent implements OnInit, OnDestroy {
   @Input() targetDate = new Date();
   @Input() bgImg = '';
+  @Input() shouldDoFinalCountdown = false;
   @Output() completed = new EventEmitter<void>();
+  @Output() finalCountdown = new EventEmitter<void>();
 
   daysLeft = 0;
   hoursLeft = 0;
@@ -40,6 +42,10 @@ export class CountdownClockComponent implements OnInit, OnDestroy {
 
     this.interval$ = interval(1000).subscribe(() => {
       this.updateTime();
+
+      if (this.shouldDoFinalCountdown && this.daysLeft <= 0 && this.hoursLeft <= 0 && this.minutesLeft <= 0 && this.secondsLeft <= 10) {
+        this.finalCountdown.emit();
+      }
 
       if (this.finished) {
         this.completed.emit();
